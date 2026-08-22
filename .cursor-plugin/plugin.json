@@ -1,0 +1,36 @@
+{
+  "name": "mcp-funding-investor-record",
+  "displayName": "Funding Record from SEC and Companies House",
+  "version": "1.0.0",
+  "description": "MCP server for the Mamba Labs Funding Record from SEC and Companies House actor on Apify. Get a company funding record from SEC Form D, Companies House and press, each labelled.",
+  "author": {
+    "name": "Mamba Labs",
+    "email": "labs@mambamindsetgrowth.com"
+  },
+  "homepage": "https://mambabuilt.com",
+  "repository": "https://github.com/mambalabsdev/mcp-funding-investor-record",
+  "license": "MIT",
+  "logo": "https://mmg-brand-assets.netlify.app/apify-actor-pngs/apify_webhook.png",
+  "category": "productivity",
+  "tags": [
+    "funding",
+    "sec-edgar",
+    "companies-house",
+    "form-d",
+    "investment",
+    "apify",
+    "clay"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "funding",
+    "sec-edgar",
+    "companies-house",
+    "form-d",
+    "investment",
+    "apify",
+    "clay"
+  ],
+  "mcpServers": ".mcp.json"
+}
