@@ -1,0 +1,119 @@
+{
+  "_provenance": {
+    "actorId": "OFS4Mt1gyYNtGfUbE",
+    "buildId": "DVzcTx2GvCoG18h3P",
+    "buildNumber": "0.3.8",
+    "readAt": "2026-10-05T15:41:15.488Z"
+  },
+  "title": "Funding Record - SEC Form D, Companies House, Press Input",
+  "description": "Give a company domain or name. Returns Form D amounts, UK registration details and press funding signals, each with its source of record. US private offerings and UK registrations only for the regulatory sources, which is what those registries hold. Free Apify plan users get 700 results per calendar month, reset monthly. Upgrade to any paid Apify plan for unlimited use: https://apify.com/pricing?fpr=mamba",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "company_domain": {
+      "title": "Company Domain",
+      "type": "string",
+      "description": "Bare company domain, for example notion.com. Used to derive a company name when none is given, and carried on the row as the join key.",
+      "editor": "textfield",
+      "prefill": "notion.com"
+    },
+    "company_name": {
+      "title": "Company Name",
+      "type": "string",
+      "description": "Strongly recommended here. Every source in this actor is searched by NAME, not by domain, and the name is what the entity gate compares a filing against. A wrong or missing name is the single largest source of wrong rows.",
+      "editor": "textfield",
+      "prefill": "Notion"
+    },
+    "sources": {
+      "title": "Sources",
+      "type": "string",
+      "description": "Which sources to query. Regulatory sources are filings and are authoritative; press is the most recent and least verified. Choose \"regulatory\" when a number has to be defensible and \"all\" when recency matters more. Sent as a string for Clay compatibility.",
+      "editor": "select",
+      "enum": [
+        "all",
+        "regulatory",
+        "sec_only",
+        "uk_only",
+        "press_only"
+      ],
+      "enumTitles": [
+        "all (SEC, Companies House and press, default)",
+        "regulatory only (SEC and Companies House, no press)",
+        "SEC EDGAR Form D only",
+        "UK Companies House only",
+        "press only (fastest, least verified)"
+      ],
+      "default": "all"
+    },
+    "lookbackMonths": {
+      "title": "Lookback Months",
+      "type": "string",
+      "description": "How far back to consider a filing. 36 months by default. A Form D from six years ago is a real filing and usually not a current signal, and this is where you say which you mean. Sent as a string for Clay compatibility.",
+      "editor": "select",
+      "enum": [
+        "12",
+        "24",
+        "36",
+        "60",
+        "120"
+      ],
+      "enumTitles": [
+        "12 months (recent raises only)",
+        "24 months",
+        "36 months (default)",
+        "60 months",
+        "120 months (full history)"
+      ],
+      "default": "36"
+    },
+    "minAmountUsd": {
+      "title": "Minimum Amount",
+      "type": "string",
+      "description": "Sets amount_meets_threshold on the row so you can filter to material raises without writing the comparison yourself. It never drops a row and never changes the amount returned. Sent as a string for Clay compatibility.",
+      "editor": "select",
+      "enum": [
+        "none",
+        "1000000",
+        "5000000",
+        "10000000",
+        "50000000"
+      ],
+      "enumTitles": [
+        "none (default)",
+        "1 million USD",
+        "5 million USD",
+        "10 million USD",
+        "50 million USD"
+      ],
+      "default": "none"
+    },
+    "companiesHouseApiKey": {
+      "title": "Companies House API Key",
+      "type": "string",
+      "description": "YOUR OWN Companies House REST API key, free at developer.company-information.service.gov.uk. OPTIONAL: without one the UK columns report skipped rather than guessing, and the SEC and press sources still run. Marked secret, so the value never renders on this page.",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "skipCache": {
+      "title": "Skip Cache",
+      "type": "string",
+      "description": "When \"false\" (default) a successful lookup is cached for seven days and reused, which costs you nothing on a repeated run. Set \"true\" to force a fresh fetch. Sent as a string for Clay compatibility.",
+      "editor": "select",
+      "enum": [
+        "false",
+        "true"
+      ],
+      "enumTitles": [
+        "false (use cache)",
+        "true (force fresh)"
+      ],
+      "default": "false"
+    },
+    "source_tag": {
+      "title": "Source Tag",
+      "type": "string",
+      "description": "Internal attribution tag set by Mamba Labs on published task examples. Not required, and nothing depends on it. Leave it empty.",
+      "editor": "textfield"
+    }
+  }
+}
