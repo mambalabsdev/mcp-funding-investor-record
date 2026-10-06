@@ -1,6 +1,6 @@
 {
   "name": "@mambalabsdev/mcp-funding-investor-record",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "MCP server for the Mamba Labs Funding Record from SEC and Companies House actor on Apify. Get a company funding record from SEC Form D, Companies House and press, each labelled.",
   "type": "module",
   "bin": {
@@ -39,7 +39,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.31.0",
+    "@modelcontextprotocol/sdk": "^1.32.0",
     "zod": "^4.5.4"
   },
   "devDependencies": {

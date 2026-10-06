@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.3",
   "name": "mcp-funding-investor-record",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "MCP server that get a company funding record from SEC Form D, Companies House and press, each labelled.",
   "author": {
     "name": "Mamba Labs"
