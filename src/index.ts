@@ -218,12 +218,13 @@ server.registerTool(
       "Return a company's funding record from PRIMARY sources: SEC EDGAR Form D filings, UK Companies House registrations and press coverage. Returns one flat Clay ready row in which every number carries a source_of_record saying whether it came from a legal filing or a press release, because those are not the same kind of fact and merging them is the defect this tool exists to prevent. Only an EXACT entity match after corporate suffixes are stripped populates an amount; a near match such as a differently named subsidiary goes to separate related_entity columns as a named lead and can never be summed into a total. Not Crunchbase and not a resold database. Read only; requires an APIFY_TOKEN and consumes Apify credits per call.",
     annotations: {
       title: "Get Company Funding Record",
-      readOnlyHint: true,
+      readOnlyHint: false,
       destructiveHint: false,
       idempotentHint: true,
       openWorldHint: true,
     },
     inputSchema: {
+      max_charge_usd: z.number().min(0).optional().describe("Optional. The run stops before any charge that would take this run past this amount, delivers every company row already charged, and processes no more companies. Leave empty to rely only on the maximum cost per run set in Apify, which the actor also honors."),
       company_domain: z.string()
         .optional()
         .describe("Bare company domain, for example notion.com. Used to derive a company name when none is given, and carried on the row as the join key."),
@@ -247,11 +248,12 @@ server.registerTool(
         .describe("When false (default) a successful lookup is cached for seven days and reused, which costs you nothing on a repeated run. Set true to force a fresh fetch."),
     },
   },
-  async ({ company_domain, company_name, sources, lookbackMonths, minAmountUsd, companiesHouseApiKey, skipCache }) => {
+  async ({ company_domain, company_name, sources, lookbackMonths, minAmountUsd, companiesHouseApiKey, skipCache, max_charge_usd }) => {
     return runActor(
       "OFS4Mt1gyYNtGfUbE",
       "Funding Record from SEC and Companies House",
       compact({
+        max_charge_usd,
         company_domain,
         company_name,
         sources,

@@ -70,6 +70,7 @@ Get your token at https://console.apify.com/account/integrations, paste it in, a
 - `minAmountUsd` (optional): one of `none`, `1000000`, `5000000`, `10000000` or `50000000`. It sets `amount_meets_threshold` on the row so you can filter to material raises without writing the comparison yourself. It never drops a row and never changes the amount returned.
 - `companiesHouseApiKey` (optional): your own Companies House REST API key, free at developer.company-information.service.gov.uk. Without one the UK columns report `skipped` rather than guessing, and the SEC and press sources still run.
 - `skipCache` (optional): when false (the default) a successful lookup is cached for seven days and reused. Set true to force a fresh fetch.
+- `max_charge_usd` (optional): a cost cap in USD for this run. The actor stops before an item that could take its charges past this amount. Omit it to rely on the maximum cost per run set in Apify.
 
 ## Output
 
@@ -116,6 +117,17 @@ The tool returns the actor's flat JSON row for the company, with 32 snake_case f
 - Entity identity gate, so a near name match is rejected and recorded
 - Rejection accounting in `filings_rejected` and `related_entity_note`
 - 32 flat snake_case fields, one row per company
+
+## Pricing
+
+Price per event on the Apify FREE plan, from the live pricing record; paid Apify plans pay less per event.
+
+| Event | Price (USD) |
+| --- | --- |
+| Actor Start (`apify-actor-start`) | 0.00005 |
+| Company checked (`company-checked`) | 0.0045 |
+| Filing found (`filing-found`) | 0.006 |
+| Press signal found (`press-signal-found`) | 0.004 |
 
 ## Full actor documentation
 
