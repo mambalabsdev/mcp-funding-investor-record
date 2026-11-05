@@ -4,7 +4,7 @@
 
 <a href="https://mcprush.com/to/funding-investor-record-mcp?ref=badge"><img width="380" height="200" src="https://mcprush.com/badge/funding-investor-record-mcp/card.svg" alt="Funding Investor Record MCP server" /></a>
 
-An MCP server that returns a company funding record from SEC Form D, Companies House and press, each labeled with the source it came from. It wraps the Mamba Labs Funding Record from SEC and Companies House actor on Apify and returns a Clay-ready flat JSON row to any MCP client.
+An MCP server that returns a company funding record from SEC Form D, Companies House and press, each labeled with the source it came from. It wraps the Mamba Labs [Company Funding Record](https://apify.com/mambalabs/funding-investor-record) actor on Apify and returns a Clay-ready flat JSON row to any MCP client.
 
 ## What's Inside
 
